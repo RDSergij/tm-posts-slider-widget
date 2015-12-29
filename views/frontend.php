@@ -13,7 +13,7 @@ $arrows_is		= ! empty( $instance['arrows_is'] )		? $instance['arrows_is']		: "tr
 $bullets_is		= ! empty( $instance['bullets_is'] )	? $instance['bullets_is']		: "true";
 $thumbnails_is	= ! empty( $instance['thumbnails_is'] ) ? $instance['thumbnails_is']	: "true";
 
-$query = new WP_Query( array( 'cat' => $category ) );
+$query = new WP_Query( array( 'posts_per_page' => $count,'cat' => $category ) );
 
 if ( $query->have_posts() ):
 ?>
