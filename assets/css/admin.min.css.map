@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEE,wDAAqC,GACpC,OAAO,EAAE,IAAI",
+"sources": ["../scss/admin.scss"],
+"names": [],
+"file": "admin.min.css"
+}
