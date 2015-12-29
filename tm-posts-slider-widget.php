@@ -111,9 +111,8 @@ class TM_Posts_Widget extends WP_Widget {
 		return $instance;
 	}
 
-} // class Foo_Widget
+}
 
-// register Foo_Widget widget
 function register_tm_posts_widget() {
 	register_widget( 'tm_posts_widget' );
 }
