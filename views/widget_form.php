@@ -118,41 +118,45 @@ $thumbnails_is_html = $thumbnails_is_field->render();
 
 ?>
 
-<p>
-	<?php echo $title_html ?>
-</p>
+<div class="tm-post-slider-form-widget">
+	<p>
+		<?php echo $title_html ?>
+	</p>
 
-<p>
-	<label for="categories"><?php _e( 'Category', 'tm_post_slide_widget' ) ?></label>
-	<?php echo $categories_html ?>
-</p>
+	<p>
+		<label for="categories"><?php _e( 'Category', 'tm_post_slide_widget' ) ?></label>
+		<?php echo $categories_html ?>
+	</p>
 
-<p>
-	<?php echo $count_html ?>
-</p>
+	<p>
+		<?php echo $count_html ?>
+	</p>
 
-<p>
-	<label for="button_is">
-	<?php _e( 'Show button', 'tm_post_slide_widget' ) ?>
-	<?php echo $button_is_html ?>
-	</label>
-</p>
+	<p>
+		<label for="button_is" id="button-show">
+		<?php _e( 'Show button', 'tm_post_slide_widget' ) ?>
+		<?php echo $button_is_html ?>
+		</label>
+	</p>
 
-<p class="tm-post-slider-button-text">
-	<?php echo $button_text_html ?>
-</p>
+	<p class="tm-post-slider-button-text">
+		<?php echo $button_text_html ?>
+	</p>
 
-<p>
-	<label for="arrows_is"><?php _e( 'Show arrows', 'tm_post_slide_widget' ) ?></label>
-	<?php echo $arrows_is_html ?>
-</p>
+	<div class="line-switcher">
+		<label for="arrows_is">
+		<?php _e( 'Show arrows', 'tm_post_slide_widget' ) ?><br/>
+		<?php echo $arrows_is_html ?>
+		</label>
 
-<p>
-	<label for="bullets_is"><?php _e( 'Show bullets', 'tm_post_slide_widget' ) ?></label>
-	<?php echo $bullets_is_html ?>
-</p>
+		<label for="bullets_is">
+		<?php _e( 'Show bullets', 'tm_post_slide_widget' ) ?><br/>
+		<?php echo $bullets_is_html ?>
+		</label>
 
-<p>
-	<label for="thumbnails_is"><?php _e( 'Show thumbnails', 'tm_post_slide_widget' ) ?></label>
-	<?php echo $thumbnails_is_html ?>
-</p>
+		<label for="thumbnails_is">
+		<?php _e( 'Show thumbnails', 'tm_post_slide_widget' ) ?><br/>
+		<?php echo $thumbnails_is_html ?>
+		</label>
+	</div>
+</div>
