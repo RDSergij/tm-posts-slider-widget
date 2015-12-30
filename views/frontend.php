@@ -4,16 +4,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-$title			= ! empty( $instance['title'] )			? $instance['title']			: __( 'List', 'tm_post_slide_widget' );
-$category		= ! empty( $instance['categories'] )	? $instance['categories']			: 0;
-$count			= ! empty( $instance['count'] )			? $instance['count']			: 4;
-$button_is		= ! empty( $instance['button_is'] )		? $instance['button_is']		: "true";
-$button_text	= ! empty( $instance['button_text'] )	? $instance['button_text']		: __( 'Button text', 'tm_post_slide_widget' );
-$arrows_is		= ! empty( $instance['arrows_is'] )		? $instance['arrows_is']		: "true";
-$bullets_is		= ! empty( $instance['bullets_is'] )	? $instance['bullets_is']		: "true";
-$thumbnails_is	= ! empty( $instance['thumbnails_is'] ) ? $instance['thumbnails_is']	: "true";
+foreach ( $this->instance_default as $key => $value ) {
+	$$key = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
+}
 
-$query = new WP_Query( array( 'posts_per_page' => $count,'cat' => $category ) );
+$query = new WP_Query( array( 'posts_per_page' => $count,'cat' => $categories ) );
 
 if ( $query->have_posts() ):
 ?>
