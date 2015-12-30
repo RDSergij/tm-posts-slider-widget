@@ -1,0 +1,17 @@
+/*
+* @section Widget form
+*/
+.tm-post-slider-form-widget {
+	
+	clear: both;
+	width: 100%;
+	min-height: 100px;
+	margin-bottom: 10px;
+	
+	.line-switcher {
+		& > label {
+			float: left;
+			margin: 0 10px 0 0;
+		}
+	}
+}
