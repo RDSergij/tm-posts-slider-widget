@@ -19,6 +19,12 @@
 class TM_Posts_Widget extends WP_Widget {
 
 	/**
+	 * Default settings
+	 * 
+	 * @var type array
+	 */
+	private $instance_default = array();
+	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
@@ -27,14 +33,29 @@ class TM_Posts_Widget extends WP_Widget {
 			__( 'TM Posts Slide Widget', 'tm_post_slide_widget' ),
 			array( 'description' => __( 'Posts slider widget', 'tm_post_slide_widget' ), )
 		);
+		// Set default settings
+		$this->instance_default = array(
+			'title'			=> __( 'List', 'tm_post_slide_widget' ),
+			'categories'	=> 0,
+			'count'			=> 4,
+			'button_is'		=> 'true',
+			'button_text'	=> __( 'Button text', 'tm_post_slide_widget' ),
+			'arrows_is'		=> 'true',
+			'bullets_is'	=> 'true',
+			'thumbnails_is'	=> 'true',
+		);
 	}
 
+	/**
+	 * Frontend view
+	 * 
+	 * @param type $args array
+	 * @param type $instance array
+	 */
 	public function widget( $args, $instance ) {
 		// Swiper js 
 		wp_register_script( 'tm-post-slider-script-swiper', plugins_url( 'assets/js/swiper.min.js', __FILE__ ), '', '', true );
 		wp_enqueue_script( 'tm-post-slider-script-swiper' );
-		//wp_register_script( 'tm-post-slider-script-swiper-umd', plugins_url( 'assets/js/swiper.jquery.umd.min.js', __FILE__ ), '', '', true );
-		//wp_enqueue_script( 'tm-post-slider-script-swiper-umd' );
 		
 		// Custom js
 		wp_register_script( 'tm-post-slider-script-frontend', plugins_url( 'assets/js/frontend.min.js', __FILE__ ), '', '', true );
@@ -47,9 +68,9 @@ class TM_Posts_Widget extends WP_Widget {
 		// Custom styles
 		wp_register_style( 'tm-post-slider-frontend', plugins_url( 'assets/css/frontend.min.css', __FILE__ ) );
 		wp_localize_script( 'tm-post-slider-frontend', 'TMWidgetParam', array(
-					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
-					'arrows_is'        => $instance['arrows_is'],
-					'bullets_is'       => $instance['bullets_is'],
+					'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
+					'arrows_is'		=> $instance['arrows_is'],
+					'bullets_is'	=> $instance['bullets_is'],
 				)
 			);
 		wp_enqueue_style( 'tm-post-slider-frontend' );
@@ -58,15 +79,15 @@ class TM_Posts_Widget extends WP_Widget {
 
 	}
 
+	/**
+	 * Create admin form for widget
+	 * 
+	 * @param type $instance array
+	 */
 	public function form( $instance ) {
-		$title			= ! empty( $instance['title'] )			? $instance['title']			: __( 'List', 'tm_post_slide_widget' );
-		$category		= ! empty( $instance['categories'] )	? $instance['categories']		: 0;
-		$count			= ! empty( $instance['count'] )			? $instance['count']			: 4;
-		$button_is		= ! empty( $instance['button_is'] )		? $instance['button_is']		: "true";
-		$button_text	= ! empty( $instance['button_text'] )	? $instance['button_text']		: __( 'Button text', 'tm_post_slide_widget' );
-		$arrows_is		= ! empty( $instance['arrows_is'] )		? $instance['arrows_is']		: "true";
-		$bullets_is		= ! empty( $instance['bullets_is'] )	? $instance['bullets_is']		: "true";
-		$thumbnails_is	= ! empty( $instance['thumbnails_is'] ) ? $instance['thumbnails_is']	: "true";
+		foreach ( $this->instance_default as $key => $value ) {
+			$$key = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
+		}
 
 		// Ui cherri api
 		wp_register_script( 'tm-post-slider-script-api', plugins_url( 'assets/js/cherry-api.js', __FILE__ ) );
@@ -78,8 +99,8 @@ class TM_Posts_Widget extends WP_Widget {
 		// Custom js 
 		wp_register_script( 'tm-post-slider-script-admin', plugins_url( 'assets/js/admin.min.js', __FILE__ ) );
 		wp_localize_script( 'tm-post-slider-script-admin', 'TMWidgetParam', array(
-					'ajaxurl'                       => admin_url( 'admin-ajax.php' ),
-					'button_is'         => $this->get_field_id( 'button_is' ),
+					'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
+					'button_is'		=> $this->get_field_id( 'button_is' ),
 				)
 			);
 		wp_enqueue_script( 'tm-post-slider-script-admin' );
@@ -97,22 +118,27 @@ class TM_Posts_Widget extends WP_Widget {
 		require 'views/widget_form.php';
 	}
 
+	/**
+	 * Update settings
+	 * 
+	 * @param type $new_instance array
+	 * @param type $old_instance array
+	 * @return type array
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$instance['title']			= ! empty( $new_instance['title'] )			? strip_tags( $new_instance['title'] ) : '';
-		$instance['categories']		= ! empty( $new_instance['categories'] )	? $new_instance['categories'] : 0;
-		$instance['count']			= ! empty( $new_instance['count'] )			? $new_instance['count'] : 4;
-		$instance['button_is']		= ! empty( $new_instance['button_is'] )		? $new_instance['button_is'] : "true";
-		$instance['button_text']	= ! empty( $new_instance['button_text'] )	? $new_instance['button_text'] : __( 'Button text', 'tm_post_slide_widget' );
-		$instance['arrows_is']		= ! empty( $new_instance['arrows_is'] )		? $new_instance['arrows_is'] : "true";
-		$instance['bullets_is']		= ! empty( $new_instance['bullets_is'] )	? $new_instance['bullets_is'] : "true";
-		$instance['thumbnails_is']	= ! empty( $new_instance['thumbnails_is'] ) ? $new_instance['thumbnails_is'] : "true";
+		foreach ( $this->instance_default as $key => $value ) {
+			$instance[ $key ] = ! empty( $new_instance[ $key ] ) ? strip_tags ( $new_instance[ $key ] ) : $value;
+		}
 
 		return $instance;
 	}
 
 }
 
+/**
+ * Register widget
+ */
 function register_tm_posts_widget() {
 	register_widget( 'tm_posts_widget' );
 }
