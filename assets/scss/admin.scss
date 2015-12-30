@@ -1,11 +1,6 @@
-#button_is {
-	&:checked {
-		~ #tm-post-slider-button-text + label{
-			display: none;
-		}
-	}
-}
-
+/*
+* @section Widget form
+*/
 .tm-post-slider-form-widget {
 	
 	clear: both;

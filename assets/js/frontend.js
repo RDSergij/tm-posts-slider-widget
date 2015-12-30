@@ -1,4 +1,5 @@
 jQuery( document ).ready( function() {
+	// Slider init
 	window.swiper = new window.Swiper( '.swiper-container', {
 		pagination: '.swiper-pagination',
 		nextButton: '.swiper-button-next',
