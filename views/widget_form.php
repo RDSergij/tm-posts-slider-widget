@@ -17,17 +17,17 @@ $title_field = new UI_Text(
 $title_html = $title_field->render();
 
 $categories_list = get_categories( array( 'hide_empty' => 0 ) );
-$categories = array ( '0' => 'not selected' );
+$categories_array = array ( '0' => 'not selected' );
 foreach ( $categories_list as $category_item ) {
-	$categories[ $category_item->term_id ] = $category_item->name;
+	$categories_array[ $category_item->term_id ] = $category_item->name;
 }
 
 $categories_field = new UI_Select(
 				array(
 					'id'				=> $this->get_field_id( 'categories' ),
 					'name'				=> $this->get_field_name( 'categories' ),
-					'value'				=> $category,
-					'options'			=> $categories,
+					'value'				=> $categories,
+					'options'			=> $categories_array,
 				)
 			);
 $categories_html = $categories_field->render();
@@ -132,16 +132,16 @@ $thumbnails_is_html = $thumbnails_is_field->render();
 		<?php echo $count_html ?>
 	</p>
 
-	<p>
-		<label for="button_is" id="button-show">
-		<?php _e( 'Show button', 'tm_post_slide_widget' ) ?>
-		<?php echo $button_is_html ?>
+	<div id="button-show">
+		<label for="button_is">
+			<?php _e( 'Show button', 'tm_post_slide_widget' ) ?><br/>
+			<?php echo $button_is_html ?>
 		</label>
-	</p>
 
-	<p class="tm-post-slider-button-text">
-		<?php echo $button_text_html ?>
-	</p>
+		<p class="tm-post-slider-button-text" <?php if ( 'false' == $button_is ): ?>style="display: none;"<?php endif; ?>>
+			<?php echo $button_text_html ?>
+		</p>
+	</div>
 
 	<div class="line-switcher">
 		<label for="arrows_is">
