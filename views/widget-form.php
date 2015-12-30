@@ -1,4 +1,8 @@
 <?php
+/**
+ * Admin view
+ */
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -17,7 +21,7 @@ $title_field = new UI_Text(
 $title_html = $title_field->render();
 
 $categories_list = get_categories( array( 'hide_empty' => 0 ) );
-$categories_array = array ( '0' => 'not selected' );
+$categories_array = array( '0' => 'not selected' );
 foreach ( $categories_list as $category_item ) {
 	$categories_array[ $category_item->term_id ] = $category_item->name;
 }
@@ -138,7 +142,7 @@ $thumbnails_is_html = $thumbnails_is_field->render();
 			<?php echo $button_is_html ?>
 		</label>
 
-		<p class="tm-post-slider-button-text" <?php if ( 'false' == $button_is ): ?>style="display: none;"<?php endif; ?>>
+		<p class="tm-post-slider-button-text" <?php if ( 'false' == $button_is ) : ?>style="display: none;"<?php endif; ?>>
 			<?php echo $button_text_html ?>
 		</p>
 	</div>
