@@ -1,4 +1,4 @@
-var swiper = new Swiper('.swiper-container', {
+var swiper = new Swiper( '.swiper-container', {
         pagination: '.swiper-pagination',
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
@@ -6,4 +6,4 @@ var swiper = new Swiper('.swiper-container', {
         paginationClickable: true,
         spaceBetween: 30,
         loop: true
-    });
+    } );
