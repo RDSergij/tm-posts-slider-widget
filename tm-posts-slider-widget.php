@@ -128,7 +128,7 @@ class TM_Posts_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		foreach ( $this->instance_default as $key => $value ) {
-			$instance[ $key ] = ! empty($new_instance[ $key ]) ? strip_tags ( $new_instance[ $key ] ) : $value;
+			$instance[ $key ] = ! empty( $new_instance[ $key ] ) ? strip_tags ( $new_instance[ $key ] ) : $value;
 		}
 
 		return $instance;
