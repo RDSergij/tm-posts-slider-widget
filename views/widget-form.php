@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 	</p>
 
 	<p>
-		<label for="categories"><?php _e( 'Category', 'tm_post_slide_widget' ) ?></label>
+		<label for="categories"><?php _e( 'Category', PHOTOLAB_BASE_TM_ALIAS ) ?></label>
 		<?php echo $categories_html ?>
 	</p>
 
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div id="button-show">
 		<label for="button_is">
-			<?php _e( 'Show button', 'tm_post_slide_widget' ) ?><br/>
+			<?php _e( 'Show button', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 			<?php echo $button_is_html ?>
 		</label>
 
@@ -38,17 +38,17 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="line-switcher">
 		<label for="arrows_is">
-		<?php _e( 'Show arrows', 'tm_post_slide_widget' ) ?><br/>
+		<?php _e( 'Show arrows', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $arrows_is_html ?>
 		</label>
 
 		<label for="bullets_is">
-		<?php _e( 'Show bullets', 'tm_post_slide_widget' ) ?><br/>
+		<?php _e( 'Show bullets', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $bullets_is_html ?>
 		</label>
 
 		<label for="thumbnails_is">
-		<?php _e( 'Show thumbnails', 'tm_post_slide_widget' ) ?><br/>
+		<?php _e( 'Show thumbnails', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $thumbnails_is_html ?>
 		</label>
 	</div>
