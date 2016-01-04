@@ -75,8 +75,15 @@ class TM_Posts_Widget extends WP_Widget {
 			);
 		wp_enqueue_style( 'tm-post-slider-frontend' );
 
-		require __DIR__ . '/views/frontend.php';
+		foreach ( $this->instance_default as $key => $value ) {
+			$$key = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
+		}
 
+		$query = new WP_Query( array( 'posts_per_page' => $count, 'cat' => $categories ) );
+
+		if ( $query->have_posts() ) {
+			require __DIR__ . '/views/frontend.php';
+		}
 	}
 
 	/**
@@ -113,6 +120,118 @@ class TM_Posts_Widget extends WP_Widget {
 		require_once __DIR__ . '/admin/lib/ui-elements/ui-text/ui-text.php';
 		require_once __DIR__ . '/admin/lib/ui-elements/ui-select/ui-select.php';
 		require_once __DIR__ . '/admin/lib/ui-elements/ui-switcher/ui-switcher.php';
+
+		$title_field = new UI_Text(
+						array(
+								'id'            => $this->get_field_id( 'title' ),
+								'type'          => 'text',
+								'name'          => $this->get_field_name( 'title' ),
+								'placeholder'   => __( 'New title', 'tm_post_slide_widget' ),
+								'value'         => $title,
+								'label'         => __( 'Title widget', 'tm_post_slide_widget' ),
+						)
+				);
+		$title_html = $title_field->render();
+
+		$categories_list = get_categories( array( 'hide_empty' => 0 ) );
+		$categories_array = array( '0' => 'not selected' );
+		foreach ( $categories_list as $category_item ) {
+			$categories_array[ $category_item->term_id ] = $category_item->name;
+		}
+
+		$categories_field = new UI_Select(
+						array(
+							'id'				=> $this->get_field_id( 'categories' ),
+							'name'				=> $this->get_field_name( 'categories' ),
+							'value'				=> $categories,
+							'options'			=> $categories_array,
+						)
+					);
+		$categories_html = $categories_field->render();
+
+		$count_field = new UI_Text(
+						array(
+								'id'            => $this->get_field_id( 'count' ),
+								'type'          => 'text',
+								'name'          => $this->get_field_name( 'count' ),
+								'placeholder'   => __( 'posts count', 'tm_post_slide_widget' ),
+								'value'         => $count,
+								'label'         => __( 'Count of posts', 'tm_post_slide_widget' ),
+						)
+				);
+		$count_html = $count_field->render();
+
+		$button_is_field = new UI_Switcher2(
+							array(
+									'id'				=> $this->get_field_id( 'button_is' ),
+									'name'				=> $this->get_field_name( 'button_is' ),
+									'value'				=> $button_is,
+									'toggle'			=> array(
+											'true_toggle'	=> 'On',
+											'false_toggle'	=> 'Off',
+									),
+
+									'style'		=> 'normal',
+							)
+					);
+		$button_is_html = $button_is_field->render();
+
+		$button_text_field = new UI_Text(
+						array(
+								'id'            => $this->get_field_id( 'button_text' ),
+								'type'          => 'text',
+								'name'          => $this->get_field_name( 'button_text' ),
+								'placeholder'   => __( 'read more...', 'tm_post_slide_widget' ),
+								'value'         => $button_text,
+								'label'         => __( 'Button text', 'tm_post_slide_widget' ),
+						)
+				);
+		$button_text_html = $button_text_field->render();
+
+		$arrows_is_field = new UI_Switcher2(
+							array(
+									'id'				=> $this->get_field_id( 'arrows_is' ),
+									'name'				=> $this->get_field_name( 'arrows_is' ),
+									'value'				=> $arrows_is,
+									'toggle'			=> array(
+											'true_toggle'	=> 'On',
+											'false_toggle'	=> 'Off',
+									),
+
+									'style'		=> 'normal',
+							)
+					);
+		$arrows_is_html = $arrows_is_field->render();
+
+		$bullets_is_field = new UI_Switcher2(
+							array(
+									'id'				=> $this->get_field_id( 'bullets_is' ),
+									'name'				=> $this->get_field_name( 'bullets_is' ),
+									'value'				=> $bullets_is,
+									'toggle'			=> array(
+											'true_toggle'	=> 'On',
+											'false_toggle'	=> 'Off',
+									),
+
+									'style'		=> 'normal',
+							)
+					);
+		$bullets_is_html = $bullets_is_field->render();
+
+		$thumbnails_is_field = new UI_Switcher2(
+							array(
+									'id'				=> $this->get_field_id( 'thumbnails_is' ),
+									'name'				=> $this->get_field_name( 'thumbnails_is' ),
+									'value'				=> $thumbnails_is,
+									'toggle'			=> array(
+											'true_toggle'	=> 'On',
+											'false_toggle'	=> 'Off',
+									),
+
+									'style'		=> 'normal',
+							)
+					);
+		$thumbnails_is_html = $thumbnails_is_field->render();
 
 		// show view
 		require 'views/widget-form.php';

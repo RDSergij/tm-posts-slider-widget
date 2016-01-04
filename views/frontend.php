@@ -8,14 +8,6 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-
-foreach ( $this->instance_default as $key => $value ) {
-	$$key = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
-}
-
-$query = new WP_Query( array( 'posts_per_page' => $count, 'cat' => $categories ) );
-
-if ( $query->have_posts() ) :
 ?>
 <!-- Swiper -->
 <div class="swiper-container tm-post-slider-widget">
@@ -48,6 +40,3 @@ if ( $query->have_posts() ) :
 	<div class="swiper-button-prev"></div>
 	<?php endif; ?>
 </div>
-<?php
-endif;
-?>
