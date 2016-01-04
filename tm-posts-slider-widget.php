@@ -80,7 +80,7 @@ class TM_Posts_Widget extends WP_Widget {
 		}
 
 		$query = new WP_Query( array( 'posts_per_page' => $count, 'cat' => $categories ) );
-		
+
 		if ( $query->have_posts() ) {
 			require __DIR__ . '/views/frontend.php';
 		}
