@@ -52,5 +52,5 @@ if ( ! defined( 'WPINC' ) ) {
 		<?php echo $thumbnails_is_html ?>
 		</label>
 	</div>
+	<p>&nbsp;</p>
 </div>
-<p></p>
