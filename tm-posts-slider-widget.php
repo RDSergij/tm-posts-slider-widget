@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Author: Osadchyi Serhii
  * Author URI: https://github.com/RDSergij
- * Text Domain: tm_post_slide_widget
+ * Text Domain: photolab-base-tm
  *
  * @package TM_Posts_Widget
  *
@@ -19,14 +19,18 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab-base-tm' );
+	if ( ! defined( 'PHOTOLAB_BASE_TM_ALIAS' ) ) {
+		define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab-base-tm' );
+	}
 
 	/**
 	 * Set constant path of text domain.
 	 *
 	 * @since 1.0.0
 	 */
-	define( 'PHOTOLAB_BASE_TM_PATH', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	if ( ! defined( 'PHOTOLAB_BASE_TM_PATH' ) ) {
+		define( 'PHOTOLAB_BASE_TM_PATH', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
 
 	/**
 	 * Adds register_tm_posts_widget widget.
