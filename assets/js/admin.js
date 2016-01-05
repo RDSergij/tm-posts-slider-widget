@@ -21,7 +21,6 @@ function initWidget() {
 
 	jQuery( '.tm-post-slider-form-widget div#button-show' ).click( function() {
 		var _this = jQuery( this );
-		console.log( _this.find( 'input[type=hidden]' ).val() );
 		if ( 'false' === _this.find( 'input[type=hidden]' ).val() ) {
 			_this.find( 'p.tm-post-slider-button-text' ).hide();
 		} else {
