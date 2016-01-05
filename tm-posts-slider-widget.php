@@ -135,7 +135,6 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 					)
 				);
 			wp_enqueue_script( 'tm-post-slider-script-admin' );
-
 			// Custom styles
 			wp_register_style( 'tm-post-slider-admin', plugins_url( 'assets/css/admin.min.css', __FILE__ ) );
 			wp_enqueue_style( 'tm-post-slider-admin' );
