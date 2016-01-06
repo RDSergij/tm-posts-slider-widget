@@ -88,14 +88,9 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 
 			// Custom js
 			wp_register_script( 'tm-post-slider-script-frontend', plugins_url( 'assets/js/frontend.min.js', __FILE__ ), '', '', true );
-			if ( 'false' == $instance['autoplay'] ) {
-				$autoplay = 0;
-			} else {
-				$autoplay = 800;
-			}
 			wp_localize_script( 'tm-post-slider-script-frontend', 'TMSliderWidgetParam', array(
 						'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
-						'autoplay'		=> (int) $autoplay,
+						'autoplay'		=> $instance['autoplay'],
 					)
 				);
 			wp_enqueue_script( 'tm-post-slider-script-frontend' );
