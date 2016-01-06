@@ -11,8 +11,8 @@ jQuery( document ).ready( function() {
 			spaceBetween: 30,
 			loop: true,
 			direction: 'horizontal',
-			speed: 1000,
-			autoplay: 800
+			speed: 2500,
+			autoplay: 2500
 		} );
 	} else {
 		window.swiper_slider = new window.Swiper( '.tm-post-slider-widget', {
