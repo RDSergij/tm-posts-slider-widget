@@ -1,4 +1,5 @@
 jQuery( document ).ready( function() {
+
 	// Slider init
 	if ( 'true' == window.TMSliderWidgetParam.autoplay ) {
 		window.swiper_slider = new window.Swiper( '.tm-post-slider-widget', {
@@ -26,5 +27,4 @@ jQuery( document ).ready( function() {
 			speed: 1000
 		} );
 	}
-	
 });
