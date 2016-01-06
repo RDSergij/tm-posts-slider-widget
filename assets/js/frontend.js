@@ -1,7 +1,7 @@
 jQuery( document ).ready( function() {
 
 	// Slider init
-	if ( 'true' == window.TMSliderWidgetParam.autoplay ) {
+	if ( 'true' === window.TMSliderWidgetParam.autoplay ) {
 		window.swiper_slider = new window.Swiper( '.tm-post-slider-widget', {
 			pagination: '.tm-post-slider-widget .swiper-pagination',
 			nextButton: '.tm-post-slider-widget .swiper-button-next',
