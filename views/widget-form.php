@@ -48,8 +48,13 @@ if ( ! defined( 'WPINC' ) ) {
 		</label>
 
 		<label for="thumbnails_is">
-		<?php _e( 'Show thumbnails', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Show thumb', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $thumbnails_is_html ?>
+		</label>
+
+		<label for="autoplay">
+		<?php _e( 'Autoplay', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php echo $autoplay_html ?>
 		</label>
 	</div>
 	<p>&nbsp;</p>

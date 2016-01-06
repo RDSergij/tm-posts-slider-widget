@@ -8,6 +8,9 @@ jQuery( document ).ready( function() {
 		slidesPerView: 1,
 		paginationClickable: true,
 		spaceBetween: 30,
-		loop: true
+		loop: true,
+		direction: 'horizontal',
+		speed: 1000,
+		autoplay: parseInt(window.TMSliderWidgetParam.autoplay)
 	} );
 });
