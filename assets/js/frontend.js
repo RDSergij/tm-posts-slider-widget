@@ -11,6 +11,6 @@ jQuery( document ).ready( function() {
 		loop: true,
 		direction: 'horizontal',
 		speed: 1000,
-		autoplay: parseInt( window.TMSliderWidgetParam.autoplay )
+		autoplay: window.TMSliderWidgetParam.autoplay
 	} );
 });
