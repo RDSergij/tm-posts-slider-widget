@@ -62,6 +62,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 				'arrows_is'		=> 'true',
 				'bullets_is'	=> 'true',
 				'thumbnails_is'	=> 'true',
+				'autoplay'		=> 'false',
 			);
 		}
 
@@ -87,6 +88,11 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 
 			// Custom js
 			wp_register_script( 'tm-post-slider-script-frontend', plugins_url( 'assets/js/frontend.min.js', __FILE__ ), '', '', true );
+			wp_localize_script( 'tm-post-slider-script-frontend', 'TMSliderWidgetParam', array(
+						'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
+						'autoplay'		=> $instance['autoplay'],
+					)
+				);
 			wp_enqueue_script( 'tm-post-slider-script-frontend' );
 
 			// Swiper styles
@@ -95,12 +101,6 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 
 			// Custom styles
 			wp_register_style( 'tm-post-slider-frontend', plugins_url( 'assets/css/frontend.min.css', __FILE__ ) );
-			wp_localize_script( 'tm-post-slider-frontend', 'TMWidgetParam', array(
-						'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
-						'arrows_is'		=> $instance['arrows_is'],
-						'bullets_is'	=> $instance['bullets_is'],
-					)
-				);
 			wp_enqueue_style( 'tm-post-slider-frontend' );
 
 			foreach ( $this->instance_default as $key => $value ) {
@@ -259,6 +259,21 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 								)
 						);
 			$thumbnails_is_html = $thumbnails_is_field->render();
+
+			$autoplay_field = new UI_Switcher2(
+								array(
+										'id'				=> $this->get_field_id( 'autoplay' ),
+										'name'				=> $this->get_field_name( 'autoplay' ),
+										'value'				=> $autoplay,
+										'toggle'			=> array(
+												'true_toggle'	=> 'On',
+												'false_toggle'	=> 'Off',
+										),
+
+										'style'		=> 'normal',
+								)
+						);
+			$autoplay_html = $autoplay_field->render();
 
 			// show view
 			require 'views/widget-form.php';
