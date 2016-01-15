@@ -88,7 +88,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 
 			// Custom js
 			wp_register_script( 'tm-post-slider-script-frontend', plugins_url( 'assets/js/frontend.min.js', __FILE__ ), '', '', true );
-			$autoplay = ! empty( $instance['autoplay'] ) ? $instance['autoplay'] : $this->instance_default[ 'autoplay' ];
+			$autoplay = ! empty( $instance['autoplay'] ) ? $instance['autoplay'] : $this->instance_default['autoplay'];
 			wp_localize_script( 'tm-post-slider-script-frontend', 'TMSliderWidgetParam', array(
 						'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
 						'autoplay'		=> $autoplay,
