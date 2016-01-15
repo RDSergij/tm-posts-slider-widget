@@ -88,9 +88,10 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 
 			// Custom js
 			wp_register_script( 'tm-post-slider-script-frontend', plugins_url( 'assets/js/frontend.min.js', __FILE__ ), '', '', true );
+			$autoplay = ! empty( $instance['autoplay'] ) ? $instance['autoplay'] : $this->instance_default[ 'autoplay' ];
 			wp_localize_script( 'tm-post-slider-script-frontend', 'TMSliderWidgetParam', array(
 						'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
-						'autoplay'		=> $instance['autoplay'],
+						'autoplay'		=> $autoplay,
 					)
 				);
 			wp_enqueue_script( 'tm-post-slider-script-frontend' );
@@ -225,7 +226,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 												'false_toggle'	=> 'Off',
 										),
 
-										'style'		=> 'normal',
+										'style'		=> 'small',
 								)
 						);
 			$arrows_is_html = $arrows_is_field->render();
@@ -240,7 +241,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 												'false_toggle'	=> 'Off',
 										),
 
-										'style'		=> 'normal',
+										'style'		=> 'small',
 								)
 						);
 			$bullets_is_html = $bullets_is_field->render();
@@ -255,7 +256,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 												'false_toggle'	=> 'Off',
 										),
 
-										'style'		=> 'normal',
+										'style'		=> 'small',
 								)
 						);
 			$thumbnails_is_html = $thumbnails_is_field->render();
@@ -270,7 +271,7 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 												'false_toggle'	=> 'Off',
 										),
 
-										'style'		=> 'normal',
+										'style'		=> 'small',
 								)
 						);
 			$autoplay_html = $autoplay_field->render();

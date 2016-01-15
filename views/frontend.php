@@ -17,7 +17,9 @@ if ( ! defined( 'WPINC' ) ) {
 		<?php while ( $query->have_posts() ) : ?>
 		<?php $query->the_post(); ?>
 		<div class="swiper-slide">
-			<h4><?php echo get_the_title() ?></h4>
+			<a href="<?php echo get_the_permalink(); ?>">
+				<h4><?php echo get_the_title() ?></h4>
+			</a>
 			<?php if ( 'true' == $thumbnails_is && has_post_thumbnail( get_the_ID() ) ) : ?>
 			<?php echo get_the_post_thumbnail( get_the_ID(), 'thumbnail', array( 'class' => 'alignleft' ) ) ?>
 			<?php endif; ?>

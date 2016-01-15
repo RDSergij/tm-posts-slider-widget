@@ -39,17 +39,17 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="line-switcher">
 		<label for="arrows_is">
-		<?php _e( 'Show arrows', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Arrows', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $arrows_is_html ?>
 		</label>
 
 		<label for="bullets_is">
-		<?php _e( 'Show bullets', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Bullets', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $bullets_is_html ?>
 		</label>
 
 		<label for="thumbnails_is">
-		<?php _e( 'Show thumb', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Thumb', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
 		<?php echo $thumbnails_is_html ?>
 		</label>
 
