@@ -125,13 +125,6 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 				$$key = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
 			}
 
-			// Ui cherri api
-			wp_register_script( 'tm-post-slider-script-api', plugins_url( 'assets/js/cherry-api.js', __FILE__ ) );
-			wp_localize_script( 'tm-post-slider-script-api', 'cherry_ajax', wp_create_nonce( 'cherry_ajax_nonce' ) );
-			wp_localize_script( 'tm-post-slider-script-api', 'wp_load_style', null );
-			wp_localize_script( 'tm-post-slider-script-api', 'wp_load_script', null );
-			wp_enqueue_script( 'tm-post-slider-script-api' );
-
 			// Custom js
 			wp_register_script( 'tm-post-slider-script-admin', plugins_url( 'assets/js/admin.min.js', __FILE__ ) );
 			wp_localize_script( 'tm-post-slider-script-admin', 'TMWidgetParam', array(
@@ -145,21 +138,20 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 			wp_enqueue_style( 'tm-post-slider-admin' );
 
 			// include ui-elements
-			require_once __DIR__ . '/admin/lib/ui-elements/ui-text/ui-text.php';
-			require_once __DIR__ . '/admin/lib/ui-elements/ui-select/ui-select.php';
-			require_once __DIR__ . '/admin/lib/ui-elements/ui-switcher/ui-switcher.php';
+			require_once __DIR__ . '/admin/lib/fox-ui-elements/ui-switcher.php';
+			require_once __DIR__ . '/admin/lib/fox-ui-elements/ui-input.php';
+			require_once __DIR__ . '/admin/lib/fox-ui-elements/ui-select.php';
 
-			$title_field = new UI_Text(
-							array(
-									'id'            => $this->get_field_id( 'title' ),
-									'type'          => 'text',
-									'name'          => $this->get_field_name( 'title' ),
-									'placeholder'   => __( 'New title', PHOTOLAB_BASE_TM_ALIAS ),
-									'value'         => $title,
-									'label'         => __( 'Title widget', PHOTOLAB_BASE_TM_ALIAS ),
-							)
-					);
-			$title_html = $title_field->render();
+			$title_field = new UI_Input_Fox(
+					array(
+						'id'			=> $this->get_field_id( 'title' ),
+						'class'			=> 'title',
+						'name'			=> $this->get_field_name( 'title' ),
+						'value'			=> $title,
+						'placeholder'	=> __( 'New title', PHOTOLAB_BASE_TM_ALIAS ),
+					)
+			);
+			$title_html = $title_field->output();
 
 			$categories_list = get_categories( array( 'hide_empty' => 0 ) );
 			$categories_array = array( '0' => 'not selected' );
@@ -167,114 +159,92 @@ if ( ! class_exists( 'TM_Posts_Widget' ) ) {
 				$categories_array[ $category_item->term_id ] = $category_item->name;
 			}
 
-			$categories_field = new UI_Select(
+			$category_field = new UI_Select_Fox(
 							array(
 								'id'				=> $this->get_field_id( 'categories' ),
 								'name'				=> $this->get_field_name( 'categories' ),
-								'value'				=> $categories,
+								'default'			=> $categories,
 								'options'			=> $categories_array,
 							)
 						);
-			$categories_html = $categories_field->render();
+			$categories_html = $category_field->output();
 
-			$count_field = new UI_Text(
+			$count_field = new UI_Input_Fox(
 							array(
-									'id'            => $this->get_field_id( 'count' ),
-									'type'          => 'text',
-									'name'          => $this->get_field_name( 'count' ),
-									'placeholder'   => __( 'posts count', PHOTOLAB_BASE_TM_ALIAS ),
-									'value'         => $count,
-									'label'         => __( 'Count of posts', PHOTOLAB_BASE_TM_ALIAS ),
+								'id'			=> $this->get_field_id( 'count' ),
+								'name'			=> $this->get_field_name( 'count' ),
+								'value'			=> $count,
+								'placeholder'   => __( 'posts count', PHOTOLAB_BASE_TM_ALIAS ),
+								'label'         => __( 'Count of posts', PHOTOLAB_BASE_TM_ALIAS ),
 							)
 					);
-			$count_html = $count_field->render();
+			$count_html = $count_field->output();
 
-			$button_is_field = new UI_Switcher2(
-								array(
-										'id'				=> $this->get_field_id( 'button_is' ),
-										'name'				=> $this->get_field_name( 'button_is' ),
-										'value'				=> $button_is,
-										'toggle'			=> array(
-												'true_toggle'	=> 'On',
-												'false_toggle'	=> 'Off',
-										),
-
-										'style'		=> 'normal',
-								)
-						);
-			$button_is_html = $button_is_field->render();
-
-			$button_text_field = new UI_Text(
+			$button_is_field = new UI_Switcher_Fox(
 							array(
-									'id'            => $this->get_field_id( 'button_text' ),
-									'type'          => 'text',
-									'name'          => $this->get_field_name( 'button_text' ),
-									'placeholder'   => __( 'read more...', PHOTOLAB_BASE_TM_ALIAS ),
-									'value'         => $button_text,
-									'label'         => __( 'Button text', PHOTOLAB_BASE_TM_ALIAS ),
+								'id'        => $this->get_field_id( 'button_is' ),
+								'class'		=> 'pull-right',
+								'name'      => $this->get_field_name( 'button_is' ),
+								'values'    => array( 'true' => 'ON', 'false' => 'OFF' ),
+								'default'    => $button_is,
 							)
 					);
-			$button_text_html = $button_text_field->render();
+			$button_is_html = $button_is_field->output();
 
-			$arrows_is_field = new UI_Switcher2(
+			$button_text_field = new UI_Input_Fox(
+							array(
+								'id'			=> $this->get_field_id( 'button_text' ),
+								'name'			=> $this->get_field_name( 'button_text' ),
+								'value'			=> $button_text,
+								'placeholder'   => __( 'read more...', PHOTOLAB_BASE_TM_ALIAS ),
+								'label'         => __( 'Button text', PHOTOLAB_BASE_TM_ALIAS ),
+							)
+					);
+			$button_text_html = $button_text_field->output();
+
+			$arrows_is_field = new UI_Switcher_Fox(
+							array(
+								'id'        => $this->get_field_id( 'arrows_is' ),
+								'class'		=> 'pull-right',
+								'name'      => $this->get_field_name( 'arrows_is' ),
+								'values'    => array( 'true' => 'ON', 'false' => 'OFF' ),
+								'default'    => $arrows_is,
+							)
+					);
+			$arrows_is_html = $arrows_is_field->output();
+
+			$bullets_is_field = new UI_Switcher_Fox(
+							array(
+								'id'        => $this->get_field_id( 'bullets_is' ),
+								'class'		=> 'pull-right',
+								'name'      => $this->get_field_name( 'bullets_is' ),
+								'values'    => array( 'true' => 'ON', 'false' => 'OFF' ),
+								'default'    => $bullets_is,
+							)
+					);
+			$bullets_is_html = $bullets_is_field->output();
+
+			$thumbnails_is_field = new UI_Switcher_Fox(
+							array(
+								'id'        => $this->get_field_id( 'thumbnails_is' ),
+								'class'		=> 'pull-right',
+								'name'      => $this->get_field_name( 'thumbnails_is' ),
+								'values'    => array( 'true' => 'ON', 'false' => 'OFF' ),
+								'default'    => $thumbnails_is,
+							)
+					);
+			$thumbnails_is_html = $thumbnails_is_field->output();
+
+			$autoplay_field = new UI_Switcher_Fox(
 								array(
-										'id'				=> $this->get_field_id( 'arrows_is' ),
-										'name'				=> $this->get_field_name( 'arrows_is' ),
-										'value'				=> $arrows_is,
-										'toggle'			=> array(
-												'true_toggle'	=> 'On',
-												'false_toggle'	=> 'Off',
-										),
-
-										'style'		=> 'small',
+									'id'        => $this->get_field_id( 'autoplay' ),
+								'class'		=> 'pull-right',
+									'name'      => $this->get_field_name( 'autoplay' ),
+									'values'    => array( 'true' => 'ON', 'false' => 'OFF' ),
+									'default'    => $autoplay,
 								)
 						);
-			$arrows_is_html = $arrows_is_field->render();
-
-			$bullets_is_field = new UI_Switcher2(
-								array(
-										'id'				=> $this->get_field_id( 'bullets_is' ),
-										'name'				=> $this->get_field_name( 'bullets_is' ),
-										'value'				=> $bullets_is,
-										'toggle'			=> array(
-												'true_toggle'	=> 'On',
-												'false_toggle'	=> 'Off',
-										),
-
-										'style'		=> 'small',
-								)
-						);
-			$bullets_is_html = $bullets_is_field->render();
-
-			$thumbnails_is_field = new UI_Switcher2(
-								array(
-										'id'				=> $this->get_field_id( 'thumbnails_is' ),
-										'name'				=> $this->get_field_name( 'thumbnails_is' ),
-										'value'				=> $thumbnails_is,
-										'toggle'			=> array(
-												'true_toggle'	=> 'On',
-												'false_toggle'	=> 'Off',
-										),
-
-										'style'		=> 'small',
-								)
-						);
-			$thumbnails_is_html = $thumbnails_is_field->render();
-
-			$autoplay_field = new UI_Switcher2(
-								array(
-										'id'				=> $this->get_field_id( 'autoplay' ),
-										'name'				=> $this->get_field_name( 'autoplay' ),
-										'value'				=> $autoplay,
-										'toggle'			=> array(
-												'true_toggle'	=> 'On',
-												'false_toggle'	=> 'Off',
-										),
-
-										'style'		=> 'small',
-								)
-						);
-			$autoplay_html = $autoplay_field->render();
+			$autoplay_html = $autoplay_field->output();
 
 			// show view
 			require 'views/widget-form.php';

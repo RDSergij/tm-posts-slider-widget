@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div id="button-show">
 		<label for="button_is">
-			<?php _e( 'Show button', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+			<?php _e( 'Show button', PHOTOLAB_BASE_TM_ALIAS ) ?>
 			<?php echo $button_is_html ?>
 		</label>
 
@@ -37,26 +37,36 @@ if ( ! defined( 'WPINC' ) ) {
 		</p>
 	</div>
 
-	<div class="line-switcher">
+	<div>
 		<label for="arrows_is">
-		<?php _e( 'Arrows', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Show arrows', PHOTOLAB_BASE_TM_ALIAS ) ?>
 		<?php echo $arrows_is_html ?>
 		</label>
+	</div>
+	<br/>
 
+	<div>
 		<label for="bullets_is">
-		<?php _e( 'Bullets', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Show bullets', PHOTOLAB_BASE_TM_ALIAS ) ?>
 		<?php echo $bullets_is_html ?>
 		</label>
+	</div>
+	<br/>
 
+	<div>
 		<label for="thumbnails_is">
-		<?php _e( 'Thumb', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Show thumb', PHOTOLAB_BASE_TM_ALIAS ) ?>
 		<?php echo $thumbnails_is_html ?>
 		</label>
+	</div>
+	<br/>
 
+	<div>
 		<label for="autoplay">
-		<?php _e( 'Autoplay', PHOTOLAB_BASE_TM_ALIAS ) ?><br/>
+		<?php _e( 'Autoplay', PHOTOLAB_BASE_TM_ALIAS ) ?>
 		<?php echo $autoplay_html ?>
 		</label>
 	</div>
+
 	<p>&nbsp;</p>
 </div>
