@@ -36,6 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
 			<?php echo $button_text_html ?>
 		</p>
 	</div>
+	<br/>
 
 	<div>
 		<label for="arrows_is">
